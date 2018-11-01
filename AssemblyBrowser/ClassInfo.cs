@@ -8,9 +8,9 @@ namespace AssemblyBrowser
     {
         private string _name;
         private Type _type;
-        private List<Field> _fields;
-        private List<Property> _properties;
-        private List<Method> _methods;
+        public List<Field> _fields;
+        public List<Property> _properties;
+        public List<Method> _methods;
         
         public ClassInfo(Type type)
         {

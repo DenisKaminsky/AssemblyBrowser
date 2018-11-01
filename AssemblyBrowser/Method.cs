@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssemblyBrowser
 {    
@@ -11,6 +8,7 @@ namespace AssemblyBrowser
     {
         private string _name;
         private string _returnType;
+        public List<Property> _properties;
 
         public string Name
         {
@@ -30,7 +28,14 @@ namespace AssemblyBrowser
             _returnType = methodInfo.ReturnParameter.GetType().Name;
         }
 
+        public void GetParams(MethodInfo methodInfo)
+        {
+            ParameterInfo[] parameters = methodInfo.GetParameters();
 
-
+            foreach (ParameterInfo parameter in parameters)
+            {
+                _properties.Add(new Property(parameter.Name, parameter.ParameterType.Name));
+            }
+        }
     }
 }
