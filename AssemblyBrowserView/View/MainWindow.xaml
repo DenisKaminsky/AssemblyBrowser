@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssemblyBrowserView"
+        xmlns:vm="clr-namespace:AssemblyBrowserView.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="498.8" Width="727.4">
 
     <Window.DataContext>
-        <AssemblyBrowserViewModel/>
+        <vm:AssemblyBrowserViewModel/>
     </Window.DataContext>
+    
     <Window.Resources>
         <Style TargetType="Button" x:Key="Base">
             <Setter Property="BorderThickness" Value="1"></Setter>

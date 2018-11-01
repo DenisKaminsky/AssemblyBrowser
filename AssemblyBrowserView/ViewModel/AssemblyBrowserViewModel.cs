@@ -8,5 +8,6 @@ namespace AssemblyBrowserView.ViewModel
 {
     public class AssemblyBrowserViewModel
     {
+
     }
 }
