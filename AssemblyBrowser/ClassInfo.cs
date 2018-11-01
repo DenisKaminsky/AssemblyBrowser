@@ -24,7 +24,7 @@ namespace AssemblyBrowser
             ScanMethods();
         }
 
-        public void ScanFields()
+        public void ScanFields()//= BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
         {
             FieldInfo[] fields = _type.GetFields();
 
