@@ -17,7 +17,11 @@
             <Setter Property="BorderThickness" Value="1"></Setter>
             <Setter Property="FontSize" Value="17"></Setter>
         </Style>
-        
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
         <Style TargetType="Button" BasedOn="{StaticResource Base}">
             <Setter Property="Background" Value="RoyalBlue"></Setter>
         </Style>  
@@ -34,11 +38,13 @@
                 <ColumnDefinition Width="106*"/>
                 <ColumnDefinition Width="413*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Load .dll" Margin="2" Grid.Column="0"/>
-            <Button Content="EXPLORER!" Margin="2" Grid.Column="1"/>
+            <Button Content="Load" Command ="{Binding OpenFileCommand}" Margin="2" Grid.Column="0"/>
+            <Label Content="{Binding Filename}" Margin="2" Grid.Column="1"/>
         </Grid>
-        
-        <TreeView Margin="2" Grid.Row="1" />
+
+        <TreeView Margin="2" Grid.Row="1">
+            
+        </TreeView>
 
     </Grid>
 </Window>

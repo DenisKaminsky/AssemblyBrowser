@@ -4,7 +4,7 @@ namespace AssemblyBrowser
 {
     public class AssemblyResult
     {
-        private List<NamespaceInfo> _namespaces;
+        public List<NamespaceInfo> _namespaces { get; set; } 
 
         public AssemblyResult()
         {
