@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using AssemblyBrowser;
 
@@ -11,21 +6,8 @@ namespace AssemblyBrowserView.Model
 {
     public class AssemblyBrowserModel: INotifyPropertyChanged
     {
-        private string _filename;
         private AssemblyResult _result;
-
-        public string Filename
-        {
-            get
-            {
-                return _filename;
-            }
-            set
-            {
-                _filename = value;
-                OnPropertyChanged();
-            }
-        }
+        private AssemblyBrowser.AssemblyBrowser _browser;
 
         public AssemblyResult Result
         {
@@ -38,6 +20,16 @@ namespace AssemblyBrowserView.Model
                 _result = value;
                 OnPropertyChanged();
             }
+        }
+
+        public AssemblyBrowserModel()
+        {
+            _browser = new AssemblyBrowser.AssemblyBrowser();
+        }
+
+        public void GetResult(string filename)
+        {
+            Result = _browser.Browse(filename);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
