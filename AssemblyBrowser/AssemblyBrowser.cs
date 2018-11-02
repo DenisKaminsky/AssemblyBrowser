@@ -30,7 +30,7 @@ namespace AssemblyBrowser
                     searchResult = new NamespaceInfo(type.Namespace);
                     _result.AddNamespace(searchResult);
                 }
-                searchResult._classes.Add(new ClassInfo(type));                
+                searchResult.AddClass(new ClassInfo(type));                
             }
             return _result;
         }

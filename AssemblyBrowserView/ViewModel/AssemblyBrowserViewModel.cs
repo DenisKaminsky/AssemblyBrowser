@@ -67,7 +67,7 @@ namespace AssemblyBrowserView.ViewModel
                     Filename = openFileDialog.FileName;
                     if (_browserModel == null)
                         _browserModel = new Model.AssemblyBrowserModel();
-                    Result = _browserModel.GetResult(Filename);
+                    //Result = _browserModel.GetResult(Filename);
                 }
             }
             catch (Exception ex)

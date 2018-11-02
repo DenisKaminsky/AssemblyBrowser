@@ -8,7 +8,7 @@ namespace AssemblyBrowser
     {
         private string _name;
         private string _returnType;
-        public List<Property> _properties;
+        private List<Property> _properties;
 
         public string Name
         {
@@ -22,10 +22,24 @@ namespace AssemblyBrowser
             set { _returnType = value; }
         }
 
+        public List<Property> Properties
+        {
+            get
+            {
+                return _properties;
+            }
+
+            set
+            {
+                _properties = value;
+            }
+        }
+
         public Method(MethodInfo methodInfo)
         {
             _name = methodInfo.Name;
             _returnType = methodInfo.ReturnParameter.GetType().Name;
+            Properties = new List<Property>();
         }
 
         public void GetParams(MethodInfo methodInfo)
@@ -34,7 +48,7 @@ namespace AssemblyBrowser
 
             foreach (ParameterInfo parameter in parameters)
             {
-                _properties.Add(new Property(parameter.Name, parameter.ParameterType.Name));
+                Properties.Add(new Property(parameter.Name, parameter.ParameterType.Name));
             }
         }
     }

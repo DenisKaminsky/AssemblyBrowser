@@ -8,17 +8,56 @@ namespace AssemblyBrowser
     {
         private string _name;
         private Type _type;
-        public List<Field> _fields;
-        public List<Property> _properties;
-        public List<Method> _methods;
-        
+        private List<Field> _fields;
+        private List<Property> _properties;
+        private List<Method> _methods;
+
+        public List<Field> Fields
+        {
+            get
+            {
+                return _fields;
+            }
+
+            set
+            {
+                _fields = value;
+            }
+        }
+
+        public List<Property> Properties
+        {
+            get
+            {
+                return _properties;
+            }
+
+            set
+            {
+                _properties = value;
+            }
+        }
+
+        public List<Method> Methods
+        {
+            get
+            {
+                return _methods;
+            }
+
+            set
+            {
+                _methods = value;
+            }
+        }
+
         public ClassInfo(Type type)
         {
             _type = type;
             _name = type.Name;
-            _fields = new List<Field>();
-            _properties = new List<Property>();
-            _methods = new List<Method>();
+            Fields = new List<Field>();
+            Properties = new List<Property>();
+            Methods = new List<Method>();
             ScanFields();
             ScanProperties();
             ScanMethods();
@@ -30,7 +69,7 @@ namespace AssemblyBrowser
 
             foreach (FieldInfo field in fields)
             {
-                _fields.Add(new Field(field.Name,field.GetType().Name));
+                Fields.Add(new Field(field.Name,field.GetType().Name));
             }
         }
 
@@ -40,7 +79,7 @@ namespace AssemblyBrowser
 
             foreach (PropertyInfo property in properties)
             {
-                _properties.Add(new Property(property.Name,property.GetType().Name));
+                Properties.Add(new Property(property.Name,property.GetType().Name));
             }
         }
         
@@ -50,7 +89,7 @@ namespace AssemblyBrowser
 
             foreach (MethodInfo method in methods)
             {                
-                _methods.Add(new Method(method));
+                Methods.Add(new Method(method));
             }
         }
     }
