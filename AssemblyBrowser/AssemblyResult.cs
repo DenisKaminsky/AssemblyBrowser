@@ -4,35 +4,42 @@ namespace AssemblyBrowser
 {
     public class AssemblyResult
     {
-        public List<NamespaceInfo> _namespaces { get; set; } 
+        private List<NamespaceInfo> _namespaces;
+
+        public List<NamespaceInfo> Namespaces
+        {
+            get
+            {
+                return _namespaces;
+            }
+
+            set
+            {
+                _namespaces = value;
+            }
+        }
 
         public AssemblyResult()
         {
-            _namespaces = new List<NamespaceInfo>();
+            Namespaces = new List<NamespaceInfo>();
         }
 
         //добавляем namespace
         public void AddNamespace(NamespaceInfo namespaceInfo)
         {
-            _namespaces.Add(namespaceInfo);
-        }
-
-        //возвращаем резульат
-        public List<NamespaceInfo> GetResult()
-        {
-            return _namespaces;
+            Namespaces.Add(namespaceInfo);
         }
 
         //проверяем наличие в списке namespace
         public NamespaceInfo FindNamespace(string name)
         {
-            return _namespaces.Find(x => x.Name == name);
+            return Namespaces.Find(x => x.Name == name);
         }
 
         //очищаем результат
         public void Clear()
         {
-            _namespaces.Clear();
+            Namespaces.Clear();
         }
     }
 }
