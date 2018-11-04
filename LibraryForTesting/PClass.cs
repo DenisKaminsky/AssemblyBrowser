@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace LibraryForTesting
 {
+    public interface IC
+    {
+        string P { get; set; }
+    }
+
     public class PClass
     {
         private int _intField;
@@ -33,6 +38,31 @@ namespace LibraryForTesting
         public static int Method2()
         {
             return 0;
+        }
+    }
+}
+
+namespace StructEnumDelegate
+{
+    enum Operation
+    {
+        Add = 2,
+        Subtract = 4,
+        Multiply = 8,
+        Divide = 16
+    }
+
+    delegate void Message();
+
+    struct User
+    {
+        public string name;
+        public int age;
+
+        public void ChooseOperation()
+        {
+            Operation op;
+            op = Operation.Add;
         }
     }
 }

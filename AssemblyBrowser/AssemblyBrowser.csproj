@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AssemblyBrowser.cs" />
     <Compile Include="AssemblyResult.cs" />
+    <Compile Include="AttributeBuilder.cs" />
     <Compile Include="ClassInfo.cs" />
     <Compile Include="ClassInfoElement.cs" />
     <Compile Include="Field.cs" />

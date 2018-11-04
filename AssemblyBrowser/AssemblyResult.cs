@@ -33,6 +33,7 @@ namespace AssemblyBrowser
         //проверяем наличие в списке namespace
         public NamespaceInfo FindNamespace(string name)
         {
+            name = "namespace " + name;
             return Namespaces.Find(x => x.Name == name);
         }
 
