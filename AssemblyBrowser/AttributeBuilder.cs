@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace AssemblyBrowser
 {
     public static class AttributeBuilder
     {
-        public static string GetAccessModifiers(Type type)
+        //модификаторы для классов
+        public static string GetClassAccessModifiers(Type type)
         {            
             if (type.IsNestedPrivate)
                 return "private ";
@@ -27,6 +29,22 @@ namespace AssemblyBrowser
                 return "public ";
         }
 
+        //модификаторы доступа полей
+        public static string GetFieldAccessModifiers(FieldInfo field)
+        {
+            if (field.IsAssembly)
+                return "internal ";
+            if (field.IsFamily)
+                return "protected ";
+            if (field.IsFamilyOrAssembly)
+                return "protecred internal ";
+            if (field.IsPrivate)
+                return "private ";
+            else
+                return "public ";
+        }
+
+        //модификаторы наследования класса
         private static string GetClassModifiers(Type type)
         {
             if (type.IsAbstract && type.IsSealed)
@@ -35,6 +53,14 @@ namespace AssemblyBrowser
                 return "sealed ";
             if (type.IsAbstract)
                 return "abstract ";
+            return "";
+        }
+
+        //модификаторы наследования поля
+        private static string GetFieldModifiers(FieldInfo field)
+        {
+            if (field.IsStatic)
+                return "static ";
             return "";
         }
 
@@ -53,18 +79,25 @@ namespace AssemblyBrowser
             return "";
         }
                 
+        //модификаторы для классов, интерфейсов и т.д
         public static string GetClassAtributes(Type type)
         {
             if (type.IsClass && (type.BaseType != typeof(MulticastDelegate)) )
-                return GetAccessModifiers(type) + GetClassModifiers(type) + GetClass(type);
-            return GetAccessModifiers(type) + GetClass(type);
+                return GetClassAccessModifiers(type) + GetClassModifiers(type) + GetClass(type);
+            return GetClassAccessModifiers(type) + GetClass(type);
+        }
+
+        //модификаторы для полей, свойств и методов
+        public static string GetFieldAtributes(FieldInfo field)
+        {
+            return GetFieldAccessModifiers(field);// + GetFieldModifiers(type);
         }
 
         public static string GetAtributes(Type type)
         {
             if (type.IsInterface)
-                return GetAccessModifiers(type) + GetClass(type);
-            return GetAccessModifiers(type) + GetClassModifiers(type) + GetClass(type);
+                return GetClassAccessModifiers(type) + GetClass(type);
+            return GetClassAccessModifiers(type) + GetClassModifiers(type) + GetClass(type);
         }
     }
 }

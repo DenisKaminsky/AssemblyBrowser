@@ -13,10 +13,15 @@ namespace LibraryForTesting
 
     public sealed class PClass
     {
-        private int _intField;
-        private string _stringField;
-        public  float _floatField;
-        
+        internal class NestedClass
+        {
+        }
+
+        protected internal int _intField;
+        internal string _stringField;
+        private  float _floatField;
+        public static int _intnum;        
+
         public int IntProperty
         {
             get
@@ -40,9 +45,14 @@ namespace LibraryForTesting
             return 0;
         }
     }
+
+    public abstract class PClass2
+    {
+        public abstract int a { get; set; }
+    }
 }
 
-namespace StructEnumDelegate
+/*namespace StructEnumDelegate
 {
     public enum Operation
     {
@@ -65,4 +75,4 @@ namespace StructEnumDelegate
             op = Operation.Add;
         }
     }
-}
+}*/

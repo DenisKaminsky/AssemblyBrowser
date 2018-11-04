@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace AssemblyBrowser
 {
@@ -12,9 +13,9 @@ namespace AssemblyBrowser
             set { _name = value; }
         }
 
-        public Field(string name, string type)
+        public Field(FieldInfo field)
         {
-            _name = type+" "+name;
+            _name = AttributeBuilder.GetFieldAtributes(field) + field.FieldType.FullName + " " +field.Name;
         }
     }
 }

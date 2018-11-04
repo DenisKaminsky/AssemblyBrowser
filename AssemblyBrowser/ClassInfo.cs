@@ -16,6 +16,7 @@ namespace AssemblyBrowser
             set { _name = value; }
         }
 
+        //список категорий
         public List<ClassInfoElement> Elements
         {
             get
@@ -32,6 +33,7 @@ namespace AssemblyBrowser
         public ClassInfo(Type type)
         {
             _type = type;
+            
             _name = AttributeBuilder.GetClassAtributes(type)+type.Name;
             Elements = new List<ClassInfoElement>();
             AddElements();
@@ -47,29 +49,33 @@ namespace AssemblyBrowser
             Elements.Add(new ClassInfoElement("Methods", new List<IField>()));
         }
 
+        //сканирование полей
         public void ScanFields()
         {
             FieldInfo[] fields = _type.GetFields(BindingFlags.Static| BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (FieldInfo field in fields)
-            {
-                Elements[0].AddClassificationElement(new Field(field.Name, field.FieldType.FullName));
+            {                   
+                Elements[0].AddClassificationElement(new Field(field));
             }
         }
 
+        //сканирование свойств
         public void ScanProperties()
         {
-            PropertyInfo[] properties = _type.GetProperties();
+            PropertyInfo[] properties = _type.GetProperties(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (PropertyInfo property in properties)
             {
-                Elements[1].AddClassificationElement(new Property(property.Name, property.GetType().Name));
+                
+                Elements[1].AddClassificationElement(new Property(property.Name, property.PropertyType));
             }
         }
         
+        //сканирование методов
         public void ScanMethods()
         {
-            MethodInfo[] methods = _type.GetMethods();
+            MethodInfo[] methods = _type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (MethodInfo method in methods)
             {
