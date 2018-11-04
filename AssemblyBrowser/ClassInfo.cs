@@ -92,7 +92,7 @@ namespace AssemblyBrowser
             Elements.Add(new ClassInfoElement("Methods", Methods));
         }
 
-        public void ScanFields()//= BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
+        public void ScanFields()
         {
             FieldInfo[] fields = _type.GetFields(BindingFlags.Static| BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
