@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace AssemblyBrowser
 {    
-    public class Method
+    public class Method: IField
     {
         private string _name;
         private string _returnType;
-        private List<Property> _properties;
+        private List<Property> _parameters;
 
         public string Name
         {
@@ -22,16 +22,16 @@ namespace AssemblyBrowser
             set { _returnType = value; }
         }
 
-        public List<Property> Properties
+        public List<Property> Parameters
         {
             get
             {
-                return _properties;
+                return _parameters;
             }
 
             set
             {
-                _properties = value;
+                _parameters = value;
             }
         }
 
@@ -39,7 +39,7 @@ namespace AssemblyBrowser
         {
             _name = methodInfo.Name;
             _returnType = methodInfo.ReturnParameter.GetType().Name;
-            Properties = new List<Property>();
+            Parameters = new List<Property>();
         }
 
         public void GetParams(MethodInfo methodInfo)
@@ -48,7 +48,7 @@ namespace AssemblyBrowser
 
             foreach (ParameterInfo parameter in parameters)
             {
-                Properties.Add(new Property(parameter.Name, parameter.ParameterType.Name));
+                Parameters.Add(new Property(parameter.Name, parameter.ParameterType.Name));
             }
         }
     }

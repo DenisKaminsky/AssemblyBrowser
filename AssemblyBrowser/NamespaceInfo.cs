@@ -19,7 +19,6 @@ namespace AssemblyBrowser
             {
                 return _classes;
             }
-
             set
             {
                 _classes = value;

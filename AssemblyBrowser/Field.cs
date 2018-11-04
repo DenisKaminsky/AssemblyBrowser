@@ -2,7 +2,7 @@
 
 namespace AssemblyBrowser
 {
-    public class Field
+    public class Field: IField
     {
         private string _name;
         private string _type;

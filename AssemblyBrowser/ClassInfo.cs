@@ -11,6 +11,13 @@ namespace AssemblyBrowser
         private List<Field> _fields;
         private List<Property> _properties;
         private List<Method> _methods;
+        private List<ClassInfoElement> _elements;
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
 
         public List<Field> Fields
         {
@@ -51,6 +58,19 @@ namespace AssemblyBrowser
             }
         }
 
+        public List<ClassInfoElement> Elements
+        {
+            get
+            {
+                return _elements;
+            }
+
+            set
+            {
+                _elements = value;
+            }
+        }
+
         public ClassInfo(Type type)
         {
             _type = type;
@@ -58,9 +78,20 @@ namespace AssemblyBrowser
             Fields = new List<Field>();
             Properties = new List<Property>();
             Methods = new List<Method>();
+            Elements = new List<ClassInfoElement>();
             ScanFields();
             ScanProperties();
             ScanMethods();
+            AddElements();
+        }
+
+        public void AddElements()
+        {
+            IField f = new Property("f", "d");
+            
+            Elements.Add(new ClassInfoElement("Fields", Fields));
+            Elements.Add(new ClassInfoElement("Properties", Fields));
+            Elements.Add(new ClassInfoElement("Methods", Fields));
         }
 
         public void ScanFields()//= BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance

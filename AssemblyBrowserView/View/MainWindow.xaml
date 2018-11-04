@@ -11,7 +11,7 @@
     <Window.DataContext>
         <vm:AssemblyBrowserViewModel/>
     </Window.DataContext>
-    
+
     <Window.Resources>
         <Style TargetType="Button" x:Key="Base">
             <Setter Property="BorderThickness" Value="1"></Setter>
@@ -24,9 +24,9 @@
         </Style>
         <Style TargetType="Button" BasedOn="{StaticResource Base}">
             <Setter Property="Background" Value="RoyalBlue"></Setter>
-        </Style>  
+        </Style>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="71*"/>
@@ -42,9 +42,27 @@
             <Label Content="{Binding Filename}" Margin="2" Grid.Column="1"/>
         </Grid>
 
-        <TreeView Margin="2" Grid.Row="1">
-            
-        </TreeView>
+        <StackPanel DataContext="{Binding Result}" Margin="2" Grid.Row="1" Orientation="Horizontal">
+            <TreeView x:Name="MainTreeView" HorizontalAlignment="Stretch" Margin="10,10,10,10.4" VerticalAlignment="Stretch" ItemsSource="{Binding Namespaces}" Width="684">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Classes}">
+                        <Label Content="{Binding Path=Name}" />
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <HierarchicalDataTemplate  ItemsSource="{Binding Methods}">
+                                <Label Content="{Binding Path=Name}" />
+                                <!--<HierarchicalDataTemplate.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Content="Hi"/>
+                                    </DataTemplate>
+                                </HierarchicalDataTemplate.ItemTemplate>-->
+
+                            </HierarchicalDataTemplate>
+
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </StackPanel>
 
     </Grid>
 </Window>

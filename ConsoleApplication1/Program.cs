@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,9 @@ namespace ConsoleApplication1
         {
             AssemblyBrowser.AssemblyBrowser browser = new AssemblyBrowser.AssemblyBrowser();
             AssemblyResult res =  browser.Browse("C:\\Users\\Денис\\Documents\\GitHub\\Faker\\Plugins\\bin\\Debug\\Plugins.dll");
-            var r = res.GetResult();
+            IList l = new List<AssemblyResult>();
+            l.Add(res); 
+
         }
     }
 }
