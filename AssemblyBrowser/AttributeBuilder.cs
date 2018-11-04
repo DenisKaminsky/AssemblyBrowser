@@ -42,10 +42,10 @@ namespace AssemblyBrowser
         {
             if (type.IsInterface)
                 return "interface ";
-            if (type.IsValueType)
-                return "struct ";
             if (type.IsEnum)
-                return "enum ";         
+                return "enum ";
+            if (type.IsValueType)
+                return "struct ";                   
             if (type.BaseType == typeof(MulticastDelegate))
                 return "delegate ";
             if (type.IsClass)
