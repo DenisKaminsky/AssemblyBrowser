@@ -21,6 +21,8 @@ namespace AssemblyBrowser
                 return "internal ";
             if (type.IsNestedFamORAssem)
                 return "protected internal ";
+            if (type.IsNestedFamANDAssem)
+                return "private protected ";
             if (type.IsNestedPublic || type.IsPublic)
                 return "public ";
             if (type.IsNotPublic)
@@ -38,6 +40,8 @@ namespace AssemblyBrowser
                 return "protected ";
             if (field.IsFamilyOrAssembly)
                 return "protecred internal ";
+            if (field.IsFamilyAndAssembly)
+                return "private protected ";
             if (field.IsPrivate)
                 return "private ";
             else
@@ -45,7 +49,7 @@ namespace AssemblyBrowser
         }
 
         //модификаторы доступа свойств
-        public static string GetPropertyAccessModifiers(MethodInfo method)
+        public static string GetMethodAccessModifiers(MethodInfo method)
         {
             if (method.IsAssembly)
                 return "internal ";
@@ -53,6 +57,8 @@ namespace AssemblyBrowser
                 return "protected ";
             if (method.IsFamilyOrAssembly)
                 return "protecred internal ";
+            if (method.IsFamilyAndAssembly)
+                return "private protected ";
             if (method.IsPrivate)
                 return "private ";
             else
