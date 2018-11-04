@@ -74,7 +74,7 @@ namespace AssemblyBrowser
         //сканирование методов
         public void ScanMethods()
         {
-            MethodInfo[] methods = _type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo[] methods = _type.GetMethods(BindingFlags.DeclaredOnly |BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (MethodInfo method in methods)
             {

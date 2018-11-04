@@ -23,6 +23,7 @@ namespace AssemblyBrowser
         private void GetParams(MethodInfo methodInfo)
         {
             string modificator = "";
+            int counter = 1;
             ParameterInfo[] parameters = methodInfo.GetParameters();
             
             Name += "(";
@@ -35,8 +36,10 @@ namespace AssemblyBrowser
                     modificator = "in ";
                 if (parameter.ParameterType.IsByRef && !parameter.IsOut)
                     modificator = "ref ";
-
-                Name += (modificator + GetParameterType(parameter.ParameterType) + " "+ parameter.Name+", ");
+                Name += (modificator + GetParameterType(parameter.ParameterType) + " "+ parameter.Name);
+                if (counter != parameters.Length)
+                    Name += ", ";
+                counter++;               
             }
             Name += ")";
         }
