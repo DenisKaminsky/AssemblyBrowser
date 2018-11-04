@@ -10,8 +10,8 @@ namespace AssemblyBrowser
 {
     public static class AttributeBuilder
     {
-        //модификаторы для классов
-        public static string GetClassAccessModifiers(Type type)
+        //модификаторы доступа для классов
+        private static string GetClassAccessModifiers(Type type)
         {            
             if (type.IsNestedPrivate)
                 return "private ";
@@ -32,7 +32,7 @@ namespace AssemblyBrowser
         }
 
         //модификаторы доступа полей
-        public static string GetFieldAccessModifiers(FieldInfo field)
+        private static string GetFieldAccessModifiers(FieldInfo field)
         {    
             if (field.IsAssembly)
                 return "internal ";
@@ -48,8 +48,8 @@ namespace AssemblyBrowser
                 return "public ";
         }
 
-        //модификаторы доступа свойств
-        public static string GetMethodAccessModifiers(MethodInfo method)
+        //модификаторы доступа методов
+        private static string GetMethodAccessModifiers(MethodInfo method)
         {
             if (method.IsAssembly)
                 return "internal ";
@@ -65,6 +65,7 @@ namespace AssemblyBrowser
                 return "public ";
         }
 
+
         //модификаторы наследования класса
         private static string GetClassModifiers(Type type)
         {
@@ -77,7 +78,7 @@ namespace AssemblyBrowser
             return "";
         }
 
-        //модификаторы наследования поля
+        //модификаторы поля
         private static string GetFieldModifiers(FieldInfo field)
         {
             string result = "";
@@ -88,6 +89,20 @@ namespace AssemblyBrowser
             if (field.IsLiteral && !field.IsInitOnly)
                 result += "const ";
             return result;
+        }
+
+        //модификаторы наследования метода
+        private static string GetMethodModifiers(MethodInfo method)
+        {
+            if (method.IsAbstract && !method.DeclaringType.IsInterface)
+                return "abstract ";
+            if (!method.Equals(method.GetBaseDefinition()))
+                return "override ";
+            if (method.IsStatic)
+                return "static ";
+            if (method.IsVirtual && !method.IsFinal && method.Equals(method.GetBaseDefinition()) && !method.DeclaringType.IsInterface)
+                return "virtual ";
+            return "";
         }
 
         private static string GetClassification(Type type)
@@ -117,6 +132,12 @@ namespace AssemblyBrowser
         public static string GetFieldAtributes(FieldInfo field)
         {
             return GetFieldAccessModifiers(field) + GetFieldModifiers(field);
+        }
+
+        //модификаторы для методов
+        public static string GetMethodsAtributes(MethodInfo method)
+        {
+            return GetMethodAccessModifiers(method) + GetMethodModifiers(method);
         }
     }
 }

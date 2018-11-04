@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace LibraryForTesting
 {
-    /*public interface IInterface
+    public interface IInterface
     {
         string P { get; set; }
-    }*/
+        void GetResult();
+    }
 
     public sealed class PClass
     {
@@ -54,11 +55,26 @@ namespace LibraryForTesting
         {
             return 0;
         }
+
+        private List<int> Method3(List<string> list)
+        {
+            return null;
+        }
     }
 
     public abstract class PClass2
     {      
         public abstract int a { get; set; }
+
+        public abstract void Method();
+    }
+
+    public class PClass3
+    {
+        public virtual void MethodVirt()
+        {
+
+        }
     }
 }
 
