@@ -8,54 +8,12 @@ namespace AssemblyBrowser
     {
         private string _name;
         private Type _type;
-        private List<IField> _fields;
-        private List<IField> _properties;
-        private List<IField> _methods;
         private List<ClassInfoElement> _elements;
 
         public string Name
         {
             get { return _name; }
             set { _name = value; }
-        }
-
-        public List<IField> Fields
-        {
-            get
-            {
-                return _fields;
-            }
-
-            set
-            {
-                _fields = value;
-            }
-        }
-
-        public List<IField> Properties
-        {
-            get
-            {
-                return _properties;
-            }
-
-            set
-            {
-                _properties = value;
-            }
-        }
-
-        public List<IField> Methods
-        {
-            get
-            {
-                return _methods;
-            }
-
-            set
-            {
-                _methods = value;
-            }
         }
 
         public List<ClassInfoElement> Elements
@@ -75,21 +33,18 @@ namespace AssemblyBrowser
         {
             _type = type;
             _name = AttributeBuilder.GetClassAtributes(type)+type.Name;
-            Fields = new List<IField>();
-            Properties = new List<IField>();
-            Methods = new List<IField>();
             Elements = new List<ClassInfoElement>();
+            AddElements();
             ScanFields();
             ScanProperties();
             ScanMethods();
-            AddElements();
         }
 
         public void AddElements()
         {            
-            Elements.Add(new ClassInfoElement("Fields", Fields));
-            Elements.Add(new ClassInfoElement("Properties", Properties));
-            Elements.Add(new ClassInfoElement("Methods", Methods));
+            Elements.Add(new ClassInfoElement("Fields", new List<IField>()));
+            Elements.Add(new ClassInfoElement("Properties", new List<IField>()));
+            Elements.Add(new ClassInfoElement("Methods", new List<IField>()));
         }
 
         public void ScanFields()
@@ -98,7 +53,7 @@ namespace AssemblyBrowser
 
             foreach (FieldInfo field in fields)
             {
-                Fields.Add(new Field(field.Name,field.FieldType.FullName));
+                Elements[0].AddClassificationElement(new Field(field.Name, field.FieldType.FullName));
             }
         }
 
@@ -108,7 +63,7 @@ namespace AssemblyBrowser
 
             foreach (PropertyInfo property in properties)
             {
-                Properties.Add(new Property(property.Name,property.GetType().Name));
+                Elements[1].AddClassificationElement(new Property(property.Name, property.GetType().Name));
             }
         }
         
@@ -117,8 +72,8 @@ namespace AssemblyBrowser
             MethodInfo[] methods = _type.GetMethods();
 
             foreach (MethodInfo method in methods)
-            {                
-                Methods.Add(new Method(method));
+            {
+                Elements[2].AddClassificationElement(new Method(method));
             }
         }
     }

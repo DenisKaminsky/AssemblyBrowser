@@ -37,6 +37,11 @@ namespace AssemblyBrowser
             }
         }
 
+        public void AddClassificationElement(IField element)
+        {
+            ClassificationElements.Add(element);
+        }
+
         public ClassInfoElement(string classification, List<IField> elements)
         {
             Classification = classification;
