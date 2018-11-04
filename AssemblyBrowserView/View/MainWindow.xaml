@@ -48,16 +48,19 @@
                     <HierarchicalDataTemplate ItemsSource="{Binding Classes}">
                         <Label Content="{Binding Path=Name}" />
                         <HierarchicalDataTemplate.ItemTemplate>
-                            <HierarchicalDataTemplate  ItemsSource="{Binding Methods}">
+                            <HierarchicalDataTemplate  ItemsSource="{Binding Elements}">
                                 <Label Content="{Binding Path=Name}" />
-                                <!--<HierarchicalDataTemplate.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label Content="Hi"/>
-                                    </DataTemplate>
-                                </HierarchicalDataTemplate.ItemTemplate>-->
-
+                                <HierarchicalDataTemplate.ItemTemplate>
+                                    <HierarchicalDataTemplate  ItemsSource="{Binding ClassificationElements}">
+                                        <Label Content="{Binding Path=Classification}" />
+                                        <HierarchicalDataTemplate.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Path=Name}"/>
+                                            </DataTemplate>
+                                        </HierarchicalDataTemplate.ItemTemplate>
+                                    </HierarchicalDataTemplate>
+                                </HierarchicalDataTemplate.ItemTemplate>
                             </HierarchicalDataTemplate>
-
                         </HierarchicalDataTemplate.ItemTemplate>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>

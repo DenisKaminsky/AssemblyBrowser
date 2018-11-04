@@ -8,25 +8,39 @@ namespace AssemblyBrowser
 {
     public sealed class ClassInfoElement
     {
-        private string _name;
+        private string _classification;
+        private List<IField> _elements;
 
-        public string Name
+        public string Classification
         {
             get
             {
-                return _name;
+                return _classification;
             }
 
             set
             {
-                _name = value;
+                _classification = value;
             }
         }
 
-        public ClassInfoElement(string name)
+        public List<IField> ClassificationElements
         {
-            Name = name;
+            get
+            {
+                return _elements;
+            }
 
+            set
+            {
+                _elements = value;
+            }
+        }
+
+        public ClassInfoElement(string classification, List<IField> elements)
+        {
+            Classification = classification;
+            ClassificationElements = elements;
         }
     }
 }

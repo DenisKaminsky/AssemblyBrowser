@@ -8,9 +8,9 @@ namespace AssemblyBrowser
     {
         private string _name;
         private Type _type;
-        private List<Field> _fields;
-        private List<Property> _properties;
-        private List<Method> _methods;
+        private List<IField> _fields;
+        private List<IField> _properties;
+        private List<IField> _methods;
         private List<ClassInfoElement> _elements;
 
         public string Name
@@ -19,7 +19,7 @@ namespace AssemblyBrowser
             set { _name = value; }
         }
 
-        public List<Field> Fields
+        public List<IField> Fields
         {
             get
             {
@@ -32,7 +32,7 @@ namespace AssemblyBrowser
             }
         }
 
-        public List<Property> Properties
+        public List<IField> Properties
         {
             get
             {
@@ -45,7 +45,7 @@ namespace AssemblyBrowser
             }
         }
 
-        public List<Method> Methods
+        public List<IField> Methods
         {
             get
             {
@@ -75,9 +75,9 @@ namespace AssemblyBrowser
         {
             _type = type;
             _name = type.Name;
-            Fields = new List<Field>();
-            Properties = new List<Property>();
-            Methods = new List<Method>();
+            Fields = new List<IField>();
+            Properties = new List<IField>();
+            Methods = new List<IField>();
             Elements = new List<ClassInfoElement>();
             ScanFields();
             ScanProperties();
@@ -86,12 +86,10 @@ namespace AssemblyBrowser
         }
 
         public void AddElements()
-        {
-            IField f = new Property("f", "d");
-            
+        {            
             Elements.Add(new ClassInfoElement("Fields", Fields));
-            Elements.Add(new ClassInfoElement("Properties", Fields));
-            Elements.Add(new ClassInfoElement("Methods", Fields));
+            Elements.Add(new ClassInfoElement("Properties", Properties));
+            Elements.Add(new ClassInfoElement("Methods", Methods));
         }
 
         public void ScanFields()//= BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
