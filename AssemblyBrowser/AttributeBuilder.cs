@@ -31,7 +31,7 @@ namespace AssemblyBrowser
 
         //модификаторы доступа полей
         public static string GetFieldAccessModifiers(FieldInfo field)
-        {
+        {            
             if (field.IsAssembly)
                 return "internal ";
             if (field.IsFamily)
@@ -87,17 +87,10 @@ namespace AssemblyBrowser
             return GetClassAccessModifiers(type) + GetClass(type);
         }
 
-        //модификаторы для полей, свойств и методов
+        //модификаторы для полей
         public static string GetFieldAtributes(FieldInfo field)
         {
-            return GetFieldAccessModifiers(field);// + GetFieldModifiers(type);
-        }
-
-        public static string GetAtributes(Type type)
-        {
-            if (type.IsInterface)
-                return GetClassAccessModifiers(type) + GetClass(type);
-            return GetClassAccessModifiers(type) + GetClassModifiers(type) + GetClass(type);
+            return GetFieldAccessModifiers(field) + GetFieldModifiers(field);
         }
     }
 }

@@ -13,14 +13,12 @@ namespace LibraryForTesting
 
     public sealed class PClass
     {
-        internal class NestedClass
-        {
-        }
-
         protected internal int _intField;
         internal string _stringField;
         private  float _floatField;
-        public static int _intnum;        
+        public static int _intnum;
+        public List<int> list;
+        public int[][] mass;
 
         public int IntProperty
         {
