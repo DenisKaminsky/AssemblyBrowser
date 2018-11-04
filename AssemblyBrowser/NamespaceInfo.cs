@@ -27,7 +27,7 @@ namespace AssemblyBrowser
 
         public NamespaceInfo(string name)
         {
-            _name = name;
+            _name = "namespace "+name;
             Classes = new List<ClassInfo>();
         }
 

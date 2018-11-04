@@ -94,11 +94,11 @@ namespace AssemblyBrowser
 
         public void ScanFields()//= BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
         {
-            FieldInfo[] fields = _type.GetFields();
+            FieldInfo[] fields = _type.GetFields(BindingFlags.Static| BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (FieldInfo field in fields)
             {
-                Fields.Add(new Field(field.Name,field.GetType().Name));
+                Fields.Add(new Field(field.Name,field.FieldType.FullName));
             }
         }
 

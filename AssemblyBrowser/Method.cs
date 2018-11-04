@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using System.Collections.Generic;
+﻿using System.Reflection;
 
 namespace AssemblyBrowser
 {    
@@ -20,7 +18,7 @@ namespace AssemblyBrowser
             _name = methodInfo.ToString();
         }
 
-        public void GetParams(MethodInfo methodInfo)
+        private void GetParams(MethodInfo methodInfo)
         {
             ParameterInfo[] parameters = methodInfo.GetParameters();
 
