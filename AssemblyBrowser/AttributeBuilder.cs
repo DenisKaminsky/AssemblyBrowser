@@ -31,7 +31,7 @@ namespace AssemblyBrowser
 
         //модификаторы доступа полей
         public static string GetFieldAccessModifiers(FieldInfo field)
-        {            
+        {    
             if (field.IsAssembly)
                 return "internal ";
             if (field.IsFamily)
@@ -39,6 +39,21 @@ namespace AssemblyBrowser
             if (field.IsFamilyOrAssembly)
                 return "protecred internal ";
             if (field.IsPrivate)
+                return "private ";
+            else
+                return "public ";
+        }
+
+        //модификаторы доступа свойств
+        public static string GetPropertyAccessModifiers(MethodInfo method)
+        {
+            if (method.IsAssembly)
+                return "internal ";
+            if (method.IsFamily)
+                return "protected ";
+            if (method.IsFamilyOrAssembly)
+                return "protecred internal ";
+            if (method.IsPrivate)
                 return "private ";
             else
                 return "public ";
@@ -59,12 +74,17 @@ namespace AssemblyBrowser
         //модификаторы наследования поля
         private static string GetFieldModifiers(FieldInfo field)
         {
-            if (field.IsStatic)
-                return "static ";
-            return "";
+            string result = "";
+            if (field.IsStatic && !(field.IsLiteral && !field.IsInitOnly))
+                result+="static ";
+            if (field.IsInitOnly)
+                result+="readonly ";
+            if (field.IsLiteral && !field.IsInitOnly)
+                result += "const ";
+            return result;
         }
 
-        private static string GetClass(Type type)
+        private static string GetClassification(Type type)
         {
             if (type.IsInterface)
                 return "interface ";
@@ -83,8 +103,8 @@ namespace AssemblyBrowser
         public static string GetClassAtributes(Type type)
         {
             if (type.IsClass && (type.BaseType != typeof(MulticastDelegate)) )
-                return GetClassAccessModifiers(type) + GetClassModifiers(type) + GetClass(type);
-            return GetClassAccessModifiers(type) + GetClass(type);
+                return GetClassAccessModifiers(type) + GetClassModifiers(type) + GetClassification(type);
+            return GetClassAccessModifiers(type) + GetClassification(type);
         }
 
         //модификаторы для полей

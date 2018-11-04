@@ -6,20 +6,32 @@ using System.Threading.Tasks;
 
 namespace LibraryForTesting
 {
-    public interface IInterface
+    /*public interface IInterface
     {
         string P { get; set; }
-    }
+    }*/
 
     public sealed class PClass
     {
         protected internal int _intField;
-        internal string _stringField;
+        internal const string _stringField = "";
         private  float _floatField;
-        public static int _intnum;
+        public static int _intnum ;
         public List<int> list;
-        public int[][] mass;
+        public readonly int[] mass;
 
+        public long LongProperty { get; set; }
+        public float FloatProperty
+        {
+            set
+            {
+                _floatField = value;
+            }
+            get
+            {
+                return _floatField;
+            }
+        }
         public int IntProperty
         {
             get
@@ -45,7 +57,7 @@ namespace LibraryForTesting
     }
 
     public abstract class PClass2
-    {
+    {      
         public abstract int a { get; set; }
     }
 }
