@@ -5,7 +5,6 @@ namespace AssemblyBrowser
     public class Field: IField
     {
         private string _name;
-        private string _type;
 
         public string Name
         {
@@ -13,16 +12,9 @@ namespace AssemblyBrowser
             set { _name = value; }
         }
 
-        public string Type
+        public Field(string name, string type)
         {
-            get { return _type; }
-            set { _type = value; }
-        }
-
-        public Field(string name,string type)
-        {
-            _name = name;
-            _type = type;
+            _name = type+" "+name;
         }
     }
 }
