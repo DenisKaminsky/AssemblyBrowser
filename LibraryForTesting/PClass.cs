@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace LibraryForTesting
 {
-    public interface IC
+    public interface IInterface
     {
         string P { get; set; }
     }
 
-    public class PClass
+    public sealed class PClass
     {
         private int _intField;
         private string _stringField;
         public  float _floatField;
-
+        
         public int IntProperty
         {
             get
@@ -44,7 +44,7 @@ namespace LibraryForTesting
 
 namespace StructEnumDelegate
 {
-    enum Operation
+    public enum Operation
     {
         Add = 2,
         Subtract = 4,
@@ -52,9 +52,9 @@ namespace StructEnumDelegate
         Divide = 16
     }
 
-    delegate void Message();
+    public delegate void Message();
 
-    struct User
+    public struct User
     {
         public string name;
         public int age;

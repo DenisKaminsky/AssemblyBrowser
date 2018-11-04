@@ -15,7 +15,7 @@ namespace AssemblyBrowser
         public Method(MethodInfo methodInfo)
         {
             string returnType = methodInfo.ReturnParameter.ParameterType.ToString();
-            _name = methodInfo.ToString();
+            _name = AttributeBuilder.GetAtributes(methodInfo.GetType())+ methodInfo.ToString();
         }
 
         private void GetParams(MethodInfo methodInfo)

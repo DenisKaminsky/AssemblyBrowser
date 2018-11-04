@@ -19,10 +19,8 @@ namespace AssemblyBrowser
                 return "internal ";
             if (type.IsNestedFamORAssem)
                 return "protected internal ";
-
             if (type.IsNestedPublic || type.IsPublic)
                 return "public ";
-
             if (type.IsNotPublic)
                 return "private ";
             else
@@ -37,7 +35,7 @@ namespace AssemblyBrowser
                 return "sealed ";
             if (type.IsAbstract)
                 return "abstract ";
-            return " ";
+            return "";
         }
 
         private static string GetClass(Type type)
@@ -47,19 +45,25 @@ namespace AssemblyBrowser
             if (type.IsValueType)
                 return "struct ";
             if (type.IsEnum)
-                return "enum ";
-
+                return "enum ";         
             if (type.BaseType == typeof(MulticastDelegate))
                 return "delegate ";
-
             if (type.IsClass)
                 return "class ";
-
             return "";
+        }
+                
+        public static string GetClassAtributes(Type type)
+        {
+            if (type.IsClass && (type.BaseType != typeof(MulticastDelegate)) )
+                return GetAccessModifiers(type) + GetClassModifiers(type) + GetClass(type);
+            return GetAccessModifiers(type) + GetClass(type);
         }
 
         public static string GetAtributes(Type type)
         {
+            if (type.IsInterface)
+                return GetAccessModifiers(type) + GetClass(type);
             return GetAccessModifiers(type) + GetClassModifiers(type) + GetClass(type);
         }
     }

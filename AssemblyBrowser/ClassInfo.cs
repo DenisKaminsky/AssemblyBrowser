@@ -74,7 +74,7 @@ namespace AssemblyBrowser
         public ClassInfo(Type type)
         {
             _type = type;
-            _name = AttributeBuilder.GetAtributes(type)+type.Name;
+            _name = AttributeBuilder.GetClassAtributes(type)+type.Name;
             Fields = new List<IField>();
             Properties = new List<IField>();
             Methods = new List<IField>();
