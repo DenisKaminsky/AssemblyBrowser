@@ -59,7 +59,7 @@ namespace LibraryForTesting
 
     public abstract class PClass2
     {      
-        public abstract int a { get; set; }
+        public abstract int a { get; }
 
         public abstract void Method();
     }

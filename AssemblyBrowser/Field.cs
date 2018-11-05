@@ -14,7 +14,7 @@ namespace AssemblyBrowser
         }
 
         public Field(FieldInfo field)
-        {                        
+        {                
             _name = AttributeBuilder.GetFieldAtributes(field) + GenericTypeConverter.GetType(field.FieldType) + " " +field.Name;
         }
     }

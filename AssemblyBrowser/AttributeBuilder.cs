@@ -182,12 +182,24 @@ namespace AssemblyBrowser
             return GetPropertyAccessModifiers(property)+ GetPropertyModifiers(property);
         }
 
+        //методы свойств
+        public static string GetPropertyMethods(PropertyInfo property)
+        {
+            string result = " { ";
+            if (property.GetMethod != null)
+                result += (GetMethodAccessModifiers(property.GetGetMethod(true))+"get; ");
+            if (property.SetMethod != null)
+                result += (GetMethodAccessModifiers(property.GetSetMethod(true)) + "set; ");
+            result += "}";
+            return result;
+        }
+
         //модификаторы для методов
         public static string GetMethodsAtributes(MethodInfo method)
         {
             return GetMethodAccessModifiers(method) + GetMethodModifiers(method);
         }
-
+        
         //модификаторы для параметров
         public static string GetParamsAtributes(ParameterInfo parameter)
         {
