@@ -30,6 +30,14 @@ namespace AssemblyBrowserUnitTest
             Assert.AreEqual(_result.Namespaces[1].Name, "namespace " + nameof(LibraryForTesting));
         }
 
+        [TestMethod]
+        public void ClassTest()
+        {
+            Assert.IsNotNull(_result.Namespaces[0].Classes);
+            Assert.IsNotNull(_result.Namespaces[1].Classes);
+            Assert.AreEqual(3, _result.Namespaces[0].Classes.Count);
+            Assert.AreEqual(4, _result.Namespaces[1].Classes.Count);
+        }
 
 
 
