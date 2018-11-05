@@ -52,7 +52,7 @@ namespace AssemblyBrowser
         //сканирование полей
         public void ScanFields()
         {
-            FieldInfo[] fields = _type.GetFields(BindingFlags.Static| BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            FieldInfo[] fields = _type.GetFields(BindingFlags.DeclaredOnly |BindingFlags.Static| BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (FieldInfo field in fields)
             {        
@@ -63,7 +63,7 @@ namespace AssemblyBrowser
         //сканирование свойств
         public void ScanProperties()
         {
-            PropertyInfo[] properties = _type.GetProperties(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            PropertyInfo[] properties = _type.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (PropertyInfo property in properties)
             {    

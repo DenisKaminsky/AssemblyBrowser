@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace LibraryForTesting
 {
@@ -14,12 +10,12 @@ namespace LibraryForTesting
 
     public sealed class PClass
     {
-        protected internal int _intField;
+        public static int _intnum;
+        public List<int> _list;
+        public readonly int[] _mass;
         internal const string _stringField = "";
+        protected internal int _intField;
         private  float _floatField;
-        public static int _intnum ;
-        public List<int> list;
-        public readonly int[] mass;
 
         private static long LongProperty { get; }
         public float FloatProperty
@@ -73,12 +69,11 @@ namespace LibraryForTesting
     {
         public virtual void MethodVirt()
         {
-
         }
     }
 }
 
-/*namespace StructEnumDelegate
+namespace StructEnumDelegate
 {
     public enum Operation
     {
@@ -101,4 +96,4 @@ namespace LibraryForTesting
             op = Operation.Add;
         }
     }
-}*/
+}
