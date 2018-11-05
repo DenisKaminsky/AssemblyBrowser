@@ -52,6 +52,9 @@ namespace AssemblyBrowser
         private static string GetPropertyAccessModifiers(PropertyInfo property)
         {
             List<string> modifiers = new List<string> { "private ", "private protected ", "protected internal ", "protected ", "internal ", "public " };
+
+            if (property.DeclaringType.IsInterface)
+                return "";
             if (property.SetMethod == null)
                 return GetMethodAccessModifiers(property.GetGetMethod(true));
             if (property.GetMethod == null)
@@ -64,6 +67,8 @@ namespace AssemblyBrowser
         //модификаторы доступа методов
         private static string GetMethodAccessModifiers(MethodInfo method)
         {
+            if (method.DeclaringType.IsInterface)
+                return "";
             if (method.IsAssembly)
                 return "internal ";
             if (method.IsFamily)
@@ -89,7 +94,7 @@ namespace AssemblyBrowser
                 return "abstract ";
             return "";
         }
-
+        
         //модификаторы поля
         private static string GetFieldModifiers(FieldInfo field)
         {
@@ -102,6 +107,19 @@ namespace AssemblyBrowser
                 result += "const ";
             return result;
         }
+
+        //модификаторы наследования свойства
+        private static string GetPropertyModifiers(PropertyInfo property)
+        {
+            MethodInfo methodInfo = property.GetGetMethod(true);
+
+            if (methodInfo != null)
+            {
+                return GetMethodModifiers(methodInfo);
+            }
+            methodInfo = property.GetSetMethod(true);
+            return GetMethodModifiers(methodInfo);
+        }        
 
         //модификаторы наследования метода
         private static string GetMethodModifiers(MethodInfo method)
@@ -161,7 +179,7 @@ namespace AssemblyBrowser
         //модификаторы для свойств
         public static string GetPropertyAtributes(PropertyInfo property)
         {
-            return GetPropertyAccessModifiers(property);
+            return GetPropertyAccessModifiers(property)+ GetPropertyModifiers(property);
         }
 
         //модификаторы для методов
@@ -169,6 +187,7 @@ namespace AssemblyBrowser
         {
             return GetMethodAccessModifiers(method) + GetMethodModifiers(method);
         }
+
         //модификаторы для параметров
         public static string GetParamsAtributes(ParameterInfo parameter)
         {
