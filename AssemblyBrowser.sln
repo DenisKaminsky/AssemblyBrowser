@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyBrowserView", "Asse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryForTesting", "LibraryForTesting\LibraryForTesting.csproj", "{2F7BD7B2-1787-4E2E-97A6-1674516DED0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyBrowserUnitTest", "UnitTestProject1\AssemblyBrowserUnitTest.csproj", "{2E033E97-6232-4711-9024-D88286917FD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyBrowserUnitTests", "UnitTestProject1\AssemblyBrowserUnitTests.csproj", "{2E033E97-6232-4711-9024-D88286917FD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
