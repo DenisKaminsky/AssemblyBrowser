@@ -52,8 +52,8 @@ namespace AssemblyBrowser
         //сканирование полей
         public void ScanFields()
         {
-            FieldInfo[] fields = _type.GetFields(BindingFlags.DeclaredOnly |BindingFlags.Static| BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
+            FieldInfo[] fields = _type.GetFields(BindingFlags.DeclaredOnly | BindingFlags.DeclaredOnly |BindingFlags.Static| BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+              
             foreach (FieldInfo field in fields)
             {        
                 Elements[0].AddClassificationElement(new Field(field));
