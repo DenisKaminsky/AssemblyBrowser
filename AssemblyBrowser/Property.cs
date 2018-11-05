@@ -15,7 +15,7 @@ namespace AssemblyBrowser
 
         public Property(PropertyInfo property)
         {
-            _name = property.PropertyType.FullName + " " + property.Name;//AttributeBuilder.GetFieldAtributes(type) + 
+            _name = GenericTypeConverter.GetType(property.PropertyType) + " " + property.Name;//AttributeBuilder.GetFieldAtributes(type) + 
         }
     }
 }

@@ -39,7 +39,7 @@ namespace AssemblyBrowser
             if (field.IsFamily)
                 return "protected ";
             if (field.IsFamilyOrAssembly)
-                return "protecred internal ";
+                return "protected internal ";
             if (field.IsFamilyAndAssembly)
                 return "private protected ";
             if (field.IsPrivate)
@@ -56,7 +56,7 @@ namespace AssemblyBrowser
             if (method.IsFamily)
                 return "protected ";
             if (method.IsFamilyOrAssembly)
-                return "protecred internal ";
+                return "protected internal ";
             if (method.IsFamilyAndAssembly)
                 return "private protected ";
             if (method.IsPrivate)
@@ -105,6 +105,18 @@ namespace AssemblyBrowser
             return "";
         }
 
+        //модификаторы параметров 
+        private static string GetParameterModifiers(ParameterInfo parameter)
+        {
+            if (parameter.IsOut)
+                return "out ";
+            if (parameter.IsIn)
+                return "in ";
+            if (parameter.ParameterType.IsByRef && !parameter.IsOut)
+                return "ref ";
+            return "";
+        }
+
         private static string GetClassification(Type type)
         {
             if (type.IsInterface)
@@ -138,6 +150,11 @@ namespace AssemblyBrowser
         public static string GetMethodsAtributes(MethodInfo method)
         {
             return GetMethodAccessModifiers(method) + GetMethodModifiers(method);
+        }
+
+        public static string GetParamsAtributes(ParameterInfo parameter)
+        {
+            return GetParameterModifiers(parameter);
         }
     }
 }

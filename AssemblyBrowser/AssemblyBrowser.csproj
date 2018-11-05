@@ -46,6 +46,7 @@
     <Compile Include="ClassInfo.cs" />
     <Compile Include="ClassInfoElement.cs" />
     <Compile Include="Field.cs" />
+    <Compile Include="GenericTypeConverter.cs" />
     <Compile Include="IField.cs" />
     <Compile Include="Method.cs" />
     <Compile Include="NamespaceInfo.cs" />

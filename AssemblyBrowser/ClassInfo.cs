@@ -55,7 +55,7 @@ namespace AssemblyBrowser
             FieldInfo[] fields = _type.GetFields(BindingFlags.Static| BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (FieldInfo field in fields)
-            {          
+            {        
                 Elements[0].AddClassificationElement(new Field(field));
             }
         }
