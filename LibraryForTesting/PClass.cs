@@ -21,7 +21,7 @@ namespace LibraryForTesting
         public List<int> list;
         public readonly int[] mass;
 
-        public long LongProperty { get; set; }
+        private long LongProperty { get; }
         public float FloatProperty
         {
             set

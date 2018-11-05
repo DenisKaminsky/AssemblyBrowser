@@ -48,6 +48,19 @@ namespace AssemblyBrowser
                 return "public ";
         }
 
+        //модификаторы доступа свойств
+        private static string GetPropertyAccessModifiers(PropertyInfo property)
+        {
+            List<string> modifiers = new List<string> { "private ", "private protected ", "protected internal ", "protected ", "internal ", "public " };
+            if (property.SetMethod == null)
+                return GetMethodAccessModifiers(property.GetGetMethod(true));
+            if (property.GetMethod == null)
+                return GetMethodAccessModifiers(property.GetSetMethod(true));
+            var max = Math.Max( modifiers.IndexOf(GetMethodAccessModifiers(property.GetGetMethod(true))),
+            modifiers.IndexOf(GetMethodAccessModifiers(property.GetSetMethod(true))));
+            return modifiers[max];
+        }
+
         //модификаторы доступа методов
         private static string GetMethodAccessModifiers(MethodInfo method)
         {
@@ -64,7 +77,6 @@ namespace AssemblyBrowser
             else
                 return "public ";
         }
-
 
         //модификаторы наследования класса
         private static string GetClassModifiers(Type type)
@@ -146,12 +158,18 @@ namespace AssemblyBrowser
             return GetFieldAccessModifiers(field) + GetFieldModifiers(field);
         }
 
+        //модификаторы для свойств
+        public static string GetPropertyAtributes(PropertyInfo property)
+        {
+            return GetPropertyAccessModifiers(property);
+        }
+
         //модификаторы для методов
         public static string GetMethodsAtributes(MethodInfo method)
         {
             return GetMethodAccessModifiers(method) + GetMethodModifiers(method);
         }
-
+        //модификаторы для параметров
         public static string GetParamsAtributes(ParameterInfo parameter)
         {
             return GetParameterModifiers(parameter);
