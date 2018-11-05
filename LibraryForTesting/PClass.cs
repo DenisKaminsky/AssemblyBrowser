@@ -10,15 +10,14 @@ namespace LibraryForTesting
 
     public sealed class PClass
     {
-        public static int _intnum;
+        public int _intnum;
         public List<int> _list;
         public readonly int[] _mass;
         internal const string _stringField = "";
         protected internal int _intField;
-        private  float _floatField;
-
-        private static long LongProperty { get; }
-        public float FloatProperty
+        private static float _floatField;
+                
+        private static float FloatProperty
         {
             set
             {

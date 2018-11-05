@@ -39,7 +39,25 @@ namespace AssemblyBrowserUnitTest
             Assert.AreEqual(4, _result.Namespaces[1].Classes.Count);
         }
 
+        [TestMethod]
+        public void FieldsTest()
+        {
+            Assert.IsNotNull(_result.Namespaces[1].Classes[1].Elements[0].ClassificationElements);
+            Assert.AreEqual(6, _result.Namespaces[1].Classes[1].Elements[0].ClassificationElements.Count);
+        }
 
+        [TestMethod]
+        public void PropertiesTest()
+        {
+            Assert.IsNotNull(_result.Namespaces[1].Classes[1].Elements[1].ClassificationElements);
+            Assert.AreEqual(2, _result.Namespaces[1].Classes[1].Elements[1].ClassificationElements.Count);
+        }
 
+        [TestMethod]
+        public void MethodsTest()
+        {
+            Assert.IsNotNull(_result.Namespaces[1].Classes[1].Elements[2].ClassificationElements);
+            Assert.AreEqual(3, _result.Namespaces[1].Classes[1].Elements[2].ClassificationElements.Count);
+        }
     }
 }
